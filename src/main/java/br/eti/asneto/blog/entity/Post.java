@@ -4,21 +4,21 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
-@Entity
-@Table
-public class Post {
+import br.eti.asneto.blog.entity.util.EntityAbstract;
 
-	@Id
-	@GeneratedValue
-	@Column(name = "id")
-	private Long id;
+@Entity
+public class Post extends EntityAbstract {
+
+	private static final long serialVersionUID = 4811607688586319467L;
+	
+	@NotNull
+	@ManyToOne
+	private Blog blog;
 	
 	@NotNull
 	@Column(name = "title")
@@ -32,30 +32,30 @@ public class Post {
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "date")
 	private Date date;
+	
+	@Column(name = "published")
+	private boolean published;
 
 	public Post() {
 		super();
 	}
 
-	public Post(String title, String content) {
+	public Post(String title, String content, Blog blog) {
 		super();
 		this.title = title;
 		this.content = content;
+		this.date = new Date();
+		this.blog = blog;
+		this.published = Boolean.TRUE;
 	}
 
-	public Post(String title, String content, Date date) {
+	public Post(String title, String content, Date date, Blog blog) {
 		super();
 		this.title = title;
 		this.content = content;
 		this.date = date;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
+		this.blog = blog;
+		this.published = Boolean.TRUE;
 	}
 
 	public String getTitle() {
@@ -81,5 +81,21 @@ public class Post {
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	
+
+	public Blog getBlog() {
+		return blog;
+	}
+
+	public void setBlog(Blog blog) {
+		this.blog = blog;
+	}
+
+	public boolean isPublished() {
+		return published;
+	}
+
+	public void setPublished(boolean published) {
+		this.published = published;
+	}
+
 }

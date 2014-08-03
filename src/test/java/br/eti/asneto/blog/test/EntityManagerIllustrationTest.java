@@ -1,6 +1,5 @@
 package br.eti.asneto.blog.test;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -15,7 +14,7 @@ public class EntityManagerIllustrationTest extends TestCase {
 
 	@Override
 	protected void setUp() throws Exception {
-		entityManagerFactory = Persistence.createEntityManagerFactory("br.eti.asneto.blog");
+		entityManagerFactory = Persistence.createEntityManagerFactory("blog-pu");
 	}
 
 	@Override
@@ -27,8 +26,8 @@ public class EntityManagerIllustrationTest extends TestCase {
 		// create a couple of events...
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		entityManager.getTransaction().begin();
-		entityManager.persist(new Post("Our very first Post!", "Post content here", new Date()));
-		entityManager.persist(new Post("Our second Post!", "Post content here", new Date()));
+		//entityManager.persist(new Post("Our very first Post!", "Post content here", new Date()));
+		//entityManager.persist(new Post("Our second Post!", "Post content here", new Date()));
 		entityManager.getTransaction().commit();
 		entityManager.close();
 

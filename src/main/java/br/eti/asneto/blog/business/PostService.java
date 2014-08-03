@@ -17,19 +17,20 @@ public class PostService {
 		dao = new PostDAO(entityManager.getEntityManager());
 	}
 
-	public void save(Post product) {
+	public Post save(Post post) {
 		try {
 			entityManager.beginTransaction();
-			dao.save(product);
+			dao.save(post);
 			entityManager.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
 			entityManager.rollBack();
 		}
+		return post;
 	}
 
-	public List<Post> listAll() {
-		return dao.findAll();
+	public List<Post> listAllPublicated(Long blogId) {
+		return dao.listAllPublicated(blogId);
 	}
 	
 	public void finishJob() {

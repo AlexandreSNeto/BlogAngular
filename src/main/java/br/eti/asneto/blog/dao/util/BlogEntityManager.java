@@ -18,7 +18,7 @@ public class BlogEntityManager {
 	private EntityManagerFactory factory;
 
 	public BlogEntityManager() {
-		factory = Persistence.createEntityManagerFactory("br.eti.asneto.blog");
+		factory = Persistence.createEntityManagerFactory("blog-pu");
 		this.entityManager = factory.createEntityManager();
 	}
 
